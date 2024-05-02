@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Box, Heading, Input, Button, List, ListItem, ListIcon, VStack, HStack, IconButton, useToast } from "@chakra-ui/react";
+import { Box, Input, List, ListItem, VStack, HStack, IconButton, useToast } from "@chakra-ui/react";
+import Header from "../components/Header";
 import { FaPlus, FaTrash } from "react-icons/fa";
 
 const Index = () => {
@@ -36,22 +37,24 @@ const Index = () => {
   };
 
   return (
-    <VStack p={8}>
-      <Heading mb="8">Todo App</Heading>
-      <HStack>
-        <Input value={inputValue} onChange={handleInputChange} onKeyPress={handleKeyPress} placeholder="Add a new task..." />
-        <IconButton icon={<FaPlus />} onClick={addTodo} colorScheme="blue" aria-label="Add todo" />
-      </HStack>
-      <List spacing={3} my={5} w="100%">
-        {todos.map((todo, index) => (
-          <ListItem key={index} p={2} bg="gray.100" borderRadius="md">
-            <HStack justify="space-between">
-              <Box>{todo}</Box>
-              <IconButton icon={<FaTrash />} onClick={() => deleteTodo(index)} colorScheme="red" aria-label="Delete todo" />
-            </HStack>
-          </ListItem>
-        ))}
-      </List>
+    <VStack>
+      <Header />
+      <VStack p={8}>
+        <HStack>
+          <Input value={inputValue} onChange={handleInputChange} onKeyPress={handleKeyPress} placeholder="Add a new task..." />
+          <IconButton icon={<FaPlus />} onClick={addTodo} colorScheme="blue" aria-label="Add todo" />
+        </HStack>
+        <List spacing={3} my={5} w="100%">
+          {todos.map((todo, index) => (
+            <ListItem key={index} p={2} bg="gray.100" borderRadius="md">
+              <HStack justify="space-between">
+                <Box>{todo}</Box>
+                <IconButton icon={<FaTrash />} onClick={() => deleteTodo(index)} colorScheme="red" aria-label="Delete todo" />
+              </HStack>
+            </ListItem>
+          ))}
+        </List>
+      </VStack>
     </VStack>
   );
 };
